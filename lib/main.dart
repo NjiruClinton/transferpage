@@ -1,5 +1,8 @@
+import 'dart:ui';
+import 'dart:ui' as ui show Image;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
 
@@ -11,6 +14,7 @@ void main() {
       ));
   
 }
+
 
 class Transfermain extends StatefulWidget {
   const Transfermain({Key? key}) : super(key: key);
@@ -106,17 +110,116 @@ class _CardPartState extends State<CardPart> {
   Widget _buildPageItem(int index){
     return Container(
       height: 170,
-      margin: EdgeInsets.only(left: 5, right: 5),
+      width: 300,
+      margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: Colors.white,
-        image: DecorationImage(
-          image: AssetImage("assets/images/card.png"),
-          fit: BoxFit.cover,
-        ),
+        color: Color(0xFFf7f7f7),
+      ),
+      child:Row(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                      Align(
+                        alignment: Alignment(1.5, 5),
+                        child: Text(
+                          "Zilla Card",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment(1.5, 5),
+                  child: Text(
+                    "\$4,158.29",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment(1.5, 5),
+                  child: Text(
+                    "**** 5722",
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: CustomPaint(
+              size: Size(230,(300*0.5666666666666667).toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+              painter: RPSCustomPainter(),
+            ),
+          ),
+        ],
       ),
     );
   }
+}
+
+
+class RPSCustomPainter extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    Paint paint0 = Paint()
+      ..color = Color(0xFF004952)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1;
+
+
+    Path path0 = Path();
+    path0.moveTo(size.width,size.height*0.2347647);
+    path0.lineTo(size.width,size.height*0.3320588);
+    path0.quadraticBezierTo(size.width,size.height*0.7058235,size.width,size.height*0.8304118);
+    path0.cubicTo(size.width*1.0056000,size.height*0.9074118,size.width*0.9682667,size.height*0.9868824,size.width*0.9194667,size.height);
+    path0.cubicTo(size.width*0.7554333,size.height*0.9941176,size.width*0.4273667,size.height,size.width*0.2633333,size.height);
+    path0.cubicTo(size.width*0.3417000,size.height*0.9793529,size.width*0.2974667,size.height*0.7336471,size.width*0.4286667,size.height*0.6625294);
+    path0.cubicTo(size.width*0.5660333,size.height*0.6025294,size.width*0.6275667,size.height*0.6554118,size.width*0.7332333,size.height*0.3844118);
+    path0.quadraticBezierTo(size.width*0.8802000,size.height*0.1584706,size.width,size.height*0.1562353);
+    path0.lineTo(size.width,size.height*0.2347647);
+    path0.close();
+
+    canvas.drawPath(path0, paint0);
+
+
+    Paint paint1 = Paint()
+      ..color = Color(0XFFe8f64b)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1;
+
+
+    Path path1 = Path();
+    path1.moveTo(size.width*0.9584333,size.height*0.1626471);
+    path1.cubicTo(size.width*0.8021333,size.height*0.1377647,size.width*0.6861667,size.height*0.2499412,size.width*0.6637667,size.height*0.3031765);
+    path1.cubicTo(size.width*0.5617333,size.height*0.4976471,size.width*0.4517000,size.height*0.5153529,size.width*0.3221333,size.height*0.6101765);
+    path1.cubicTo(size.width*0.2196000,size.height*0.6835882,size.width*0.1613667,size.height*0.9211765,size.width*0.1905667,size.height);
+    path1.cubicTo(size.width*0.2107167,size.height,size.width*0.2510167,size.height,size.width*0.2711667,size.height);
+    path1.cubicTo(size.width*0.3202333,size.height*0.9939412,size.width*0.3097000,size.height*0.7321176,size.width*0.4311667,size.height*0.6568824);
+    path1.cubicTo(size.width*0.6090333,size.height*0.6081765,size.width*0.6445000,size.height*0.5932941,size.width*0.7236667,size.height*0.4056471);
+    path1.cubicTo(size.width*0.7604333,size.height*0.3480588,size.width*0.8155333,size.height*0.2334118,size.width*0.9584333,size.height*0.1626471);
+    path1.close();
+
+    canvas.drawPath(path1, paint1);
+
+    final icon = Icons.circle_outlined;
+    TextPainter textPainter = TextPainter(textDirection: TextDirection.rtl);
+    textPainter.text = TextSpan(text: String.fromCharCode(icon.codePoint),
+        style: TextStyle(fontSize: 40.0,fontFamily: icon.fontFamily));
+    textPainter.layout();
+    textPainter.paint(canvas, Offset(170.0,100.0));
+
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+
 }
 
 class RecipientPart extends StatelessWidget {
