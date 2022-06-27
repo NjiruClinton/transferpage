@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'dart:ui';
 import 'dart:ui' as ui show Image;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' as Io;
 import 'package:flutter/services.dart';
 
 void main() {
@@ -149,11 +153,28 @@ class _CardPartState extends State<CardPart> {
               ],
             ),
           ),
-          Container(
-            child: CustomPaint(
-              size: Size(230,(300*0.5666666666666667).toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-              painter: RPSCustomPainter(),
-            ),
+          Stack(
+            children: [
+                  Container(
+                    width: 230,
+                    height: 170,
+                    child: CustomPaint(
+                      size: Size(230,(300*0.5666666666666667).toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                      painter: RPSCustomPainter(),
+                    ),
+                  ),
+              Align(
+                alignment: Alignment(1, 1),
+                child: Container(
+                  height: 20,
+                  width: 20,
+                  alignment: FractionalOffset(2, 0),
+                  //child: Image.asset("assets/images/overlap.png"),
+                  clipBehavior: Clip.none,
+                ),
+              ),
+
+            ],
           ),
         ],
       ),
@@ -165,12 +186,10 @@ class _CardPartState extends State<CardPart> {
 class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
-
     Paint paint0 = Paint()
       ..color = Color(0xFF004952)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
-
 
     Path path0 = Path();
     path0.moveTo(size.width,size.height*0.2347647);
@@ -206,12 +225,36 @@ class RPSCustomPainter extends CustomPainter{
 
     canvas.drawPath(path1, paint1);
 
+    var path = Path();
+    final paint = Paint();
+    paint.color = Colors.white;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 3;
+    var position = Offset(200.0,120.0);
+    canvas.drawCircle(position, 12.0, paint);
+
+
     final icon = Icons.circle_outlined;
     TextPainter textPainter = TextPainter(textDirection: TextDirection.rtl);
     textPainter.text = TextSpan(text: String.fromCharCode(icon.codePoint),
-        style: TextStyle(fontSize: 40.0,fontFamily: icon.fontFamily));
+        style: TextStyle(fontSize: 32.0,fontFamily: icon.fontFamily,
+          shadows: <Shadow>[
+            Shadow(
+
+              blurRadius: 4.0,
+              color: Colors.black,
+            ),
+            Shadow(
+
+              blurRadius: 10.0,
+              color: Colors.black,
+            ),
+          ],));
     textPainter.layout();
-    textPainter.paint(canvas, Offset(170.0,100.0));
+    textPainter.paint(canvas, Offset(167.0,104.0));
+
+
+
 
   }
 
