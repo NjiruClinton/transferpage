@@ -1,32 +1,19 @@
-import 'dart:async';
-import 'dart:ui';
-import 'dart:ui' as ui show Image;
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' as Io;
-import 'package:flutter/services.dart';
 
 void main() {
-
   runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
           home: Transfermain(),
           theme: ThemeData(fontFamily: 'Poppins'),
       ));
-  
 }
-
-
 class Transfermain extends StatefulWidget {
   const Transfermain({Key? key}) : super(key: key);
-
   @override
   State<Transfermain> createState() => _TransfermainState();
 }
-
 class _TransfermainState extends State<Transfermain> {
   @override
   Widget build(BuildContext context) {
@@ -37,31 +24,25 @@ class _TransfermainState extends State<Transfermain> {
         child: Column(
         children: [
            Container(
-            child: Container(
-              margin: EdgeInsets.only(top: 45, bottom: 15),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Text("Transfers",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
-                  ),
-                  Container(
-                    child: Text("Cancel",
-                        style: TextStyle(
-                        fontSize: 17,
-                        fontFamily: 'Poppins',
-                        color: Colors.black)),
-                  ),
-                ],
-              ),
-            ),
-          ),
+             margin: EdgeInsets.only(top: 45, bottom: 15),
+             padding: EdgeInsets.only(left: 20, right: 20),
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 Text("Transfers",
+                     style: TextStyle(
+                         fontSize: 30,
+                         fontFamily: 'Poppins',
+                         fontWeight: FontWeight.bold,
+                         color: Colors.black)),
+                 Text("Cancel",
+                     style: TextStyle(
+                     fontSize: 17,
+                     fontFamily: 'Poppins',
+                     color: Colors.black)),
+               ],
+             ),
+           ),
           Divider(),
           Container(
             margin: EdgeInsets.only(left: 20),
@@ -81,7 +62,6 @@ class _TransfermainState extends State<Transfermain> {
             child: Text("Amount", style: TextStyle(fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.w500)),
             alignment: Alignment.centerLeft,
           ),
-
           AmountPart(),
           SendPart(),
         ],
@@ -90,14 +70,11 @@ class _TransfermainState extends State<Transfermain> {
     );
   }
 }
-
 class CardPart extends StatefulWidget {
   const CardPart({Key? key}) : super(key: key);
-
   @override
   State<CardPart> createState() => _CardPartState();
 }
-
 class _CardPartState extends State<CardPart> {
   @override
   Widget build(BuildContext context) {
@@ -117,7 +94,7 @@ class _CardPartState extends State<CardPart> {
       width: 300,
       margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(25),
         color: Color(0xFFf7f7f7),
       ),
       child:Row(
@@ -126,28 +103,43 @@ class _CardPartState extends State<CardPart> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                      Align(
-                        alignment: Alignment(1.5, 5),
-                        child: Text(
-                          "Zilla Card",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(width: 13,),
+                              Placeholder(
+                                fallbackHeight: 10,
+                                fallbackWidth:10,
+                              ),
+                          SizedBox(width: 7,),
+                          Align(
+                            alignment: Alignment(1.5, 5),
+                            child: Text(
+                              "Zilla Card",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                            ),
+                          ),
+                        ],
                       ),
                 SizedBox(height: 20),
                 Align(
-                  alignment: Alignment(1.5, 5),
+                  alignment: Alignment(5.5, 5),
                   child: Text(
                     "\$4,158.29",
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                    fontSize: 18),
                   ),
                 ),
+                SizedBox(height: 5,),
                 Align(
-                  alignment: Alignment(1.5, 5),
+                  alignment: Alignment(0.4, 5),
                   child: Text(
                     "**** 5722",
                     textAlign: TextAlign.left,
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
               ],
@@ -173,7 +165,6 @@ class _CardPartState extends State<CardPart> {
                   clipBehavior: Clip.none,
                 ),
               ),
-
             ],
           ),
         ],
@@ -181,8 +172,6 @@ class _CardPartState extends State<CardPart> {
     );
   }
 }
-
-
 class RPSCustomPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
@@ -202,15 +191,12 @@ class RPSCustomPainter extends CustomPainter{
     path0.quadraticBezierTo(size.width*0.8802000,size.height*0.1584706,size.width,size.height*0.1562353);
     path0.lineTo(size.width,size.height*0.2347647);
     path0.close();
-
     canvas.drawPath(path0, paint0);
-
 
     Paint paint1 = Paint()
       ..color = Color(0XFFe8f64b)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
-
 
     Path path1 = Path();
     path1.moveTo(size.width*0.9584333,size.height*0.1626471);
@@ -222,10 +208,8 @@ class RPSCustomPainter extends CustomPainter{
     path1.cubicTo(size.width*0.6090333,size.height*0.6081765,size.width*0.6445000,size.height*0.5932941,size.width*0.7236667,size.height*0.4056471);
     path1.cubicTo(size.width*0.7604333,size.height*0.3480588,size.width*0.8155333,size.height*0.2334118,size.width*0.9584333,size.height*0.1626471);
     path1.close();
-
     canvas.drawPath(path1, paint1);
 
-    var path = Path();
     final paint = Paint();
     paint.color = Colors.white;
     paint.style = PaintingStyle.stroke;
@@ -233,41 +217,30 @@ class RPSCustomPainter extends CustomPainter{
     var position = Offset(200.0,120.0);
     canvas.drawCircle(position, 12.0, paint);
 
-
     final icon = Icons.circle_outlined;
     TextPainter textPainter = TextPainter(textDirection: TextDirection.rtl);
     textPainter.text = TextSpan(text: String.fromCharCode(icon.codePoint),
         style: TextStyle(fontSize: 32.0,fontFamily: icon.fontFamily,
           shadows: <Shadow>[
             Shadow(
-
               blurRadius: 4.0,
               color: Colors.black,
             ),
             Shadow(
-
               blurRadius: 10.0,
               color: Colors.black,
             ),
           ],));
     textPainter.layout();
     textPainter.paint(canvas, Offset(167.0,104.0));
-
-
-
-
   }
-
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
-
 }
-
 class RecipientPart extends StatelessWidget {
   const RecipientPart({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -301,11 +274,8 @@ class RecipientPart extends StatelessWidget {
     );
   }
 }
-
-
 class AmountPart extends StatelessWidget {
   const AmountPart({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -321,14 +291,11 @@ class AmountPart extends StatelessWidget {
           Text("\$100", style: TextStyle(fontSize: 50, fontFamily: 'Poppins', fontWeight: FontWeight.w100)),
         ],
       ),
-
     );
   }
 }
-
 class SendPart extends StatelessWidget {
   const SendPart({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -360,14 +327,11 @@ class SendPart extends StatelessWidget {
           Spacer(flex: 1,),
         ],
       ),
-
     );
   }
 }
-
 class CategoriesScroller extends StatelessWidget {
   const CategoriesScroller();
-
   @override
   Widget build(BuildContext context) {
     final double categoryHeight = MediaQuery.of(context).size.height * 0.30 - 50;
@@ -392,7 +356,6 @@ class CategoriesScroller extends StatelessWidget {
                       BoxShadow(color: Color(0xFF475a78), spreadRadius: 2),
                     ]
                 ),
-
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -418,7 +381,6 @@ class CategoriesScroller extends StatelessWidget {
                         ],
                       ),
                       ),
-
                       SizedBox(
                         height: 10,
                       ),
